@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 
 import Button from '../Button';
+import React from 'react';
 
 interface ModalProps {
   isOpen?: boolean;
@@ -70,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
       <div
-        className='
+        className="
           justify-center 
           items-center 
           flex 
@@ -82,9 +83,10 @@ const Modal: React.FC<ModalProps> = ({
           outline-none 
           focus:outline-none
           bg-neutral-800/70
-        '>
+        "
+      >
         <div
-          className='
+          className="
           relative 
           w-full
           md:w-4/6
@@ -95,7 +97,8 @@ const Modal: React.FC<ModalProps> = ({
           h-full 
           lg:h-auto
           md:h-auto
-          '>
+          "
+        >
           {/*content*/}
           <div
             className={`
@@ -104,9 +107,10 @@ const Modal: React.FC<ModalProps> = ({
             h-full
             ${showModal ? 'translate-y-0' : 'translate-y-full'}
             ${showModal ? 'opacity-100' : 'opacity-0'}
-          `}>
+          `}
+          >
             <div
-              className='
+              className="
               translate
               h-full
               lg:h-auto
@@ -121,10 +125,11 @@ const Modal: React.FC<ModalProps> = ({
               bg-white 
               outline-none 
               focus:outline-none
-            '>
+            "
+            >
               {/*header*/}
               <div
-                className='
+                className="
                 flex 
                 items-center 
                 p-6
@@ -132,33 +137,36 @@ const Modal: React.FC<ModalProps> = ({
                 justify-center
                 relative
                 border-b-[1px]
-                '>
+                "
+              >
                 <button
-                  className='
+                  className="
                     p-1
                     border-0 
                     hover:opacity-70
                     transition
                     absolute
                     left-9
-                  '
-                  onClick={handleClose}>
+                  "
+                  onClick={handleClose}
+                >
                   <IoMdClose size={18} />
                 </button>
-                <div className='text-lg font-semibold'>{title}</div>
+                <div className="text-lg font-semibold">{title}</div>
               </div>
               {/*body*/}
-              <div className='relative p-6 flex-auto'>{body}</div>
+              <div className="relative p-6 flex-auto">{body}</div>
               {/*footer*/}
-              <div className='flex flex-col gap-2 p-6'>
+              <div className="flex flex-col gap-2 p-6">
                 <div
-                  className='
+                  className="
                     flex 
                     flex-row 
                     items-center 
                     gap-4 
                     w-full
-                  '>
+                  "
+                >
                   {secondaryAction && secondaryActionLabel && (
                     <Button
                       disabled={disabled}

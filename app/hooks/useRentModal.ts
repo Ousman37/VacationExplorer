@@ -1,12 +1,12 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
-interface RegisterModalStore {
+interface RentModalStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-const useRegisterModal = create<RegisterModalStore>((set) => ({
+const useRentModal = create<RentModalStore>((set) => ({
   isOpen: false,
   onOpen: () => {
     set({ isOpen: true });
@@ -16,4 +16,4 @@ const useRegisterModal = create<RegisterModalStore>((set) => ({
   },
 }));
 
-export default useRegisterModal;
+export default useRentModal;

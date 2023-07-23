@@ -5,6 +5,7 @@ import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 interface InputProps {
   id: string;
   label: string;
+  placeholder?: string;
   type?: string;
   disabled?: boolean;
   formatPrice?: boolean;
@@ -16,6 +17,7 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({
   id,
   label,
+  placeholder,
   type = 'text',
   disabled = false,
   formatPrice = false,
@@ -23,19 +25,20 @@ const Input: React.FC<InputProps> = ({
   errors,
 }) => {
   return (
-    <div className='w-full relative'>
+    <div className="w-full relative">
       {formatPrice && (
         <BiDollar
           size={24}
-          className='absolute text-neutral-700 top-5 left-2'
+          className="absolute text-neutral-700 top-5 left-2"
         />
       )}
 
       <input
         id={id}
+        type={type}
+        placeholder={placeholder}
         disabled={disabled}
         {...register(id, { required: true })}
-        placeholder=''
         className={`peer w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed ${
           formatPrice ? 'pl-9' : 'pl-4'
         } ${errors[id] ? 'border-rose-500' : 'border-rose-300'} ${
@@ -55,7 +58,8 @@ const Input: React.FC<InputProps> = ({
           peer-focus:scale-75
         peer-focus:translate-y-[-20px] ${
           errors[id] ? 'text-rose-500' : 'text-zinc-400'
-        }`}>
+        }`}
+      >
         {label}
       </label>
     </div>

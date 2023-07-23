@@ -11,14 +11,14 @@ const Avatar: React.FC<AvatarProps> = ({ src }) => {
     <div>
       {src ? (
         <Image
-          className='rounded-full'
+          className="rounded-full"
           src={src}
-          alt='Avatar'
+          alt="Avatar"
           width={30}
           height={30}
         />
       ) : (
-        <FaUser size={14} color='gray' />
+        <FaUser size={14} color="gray" />
       )}
     </div>
   );
