@@ -1,3 +1,4 @@
+import React from 'react';
 import { Nunito } from 'next/font/google';
 
 import './globals.css';
@@ -5,12 +6,14 @@ import Navbar from './components/navbar/Navbar';
 import ClientOnly from './components/ClientOnly';
 import RegisterModal from './components/modals/RegisterModal';
 import LoginModal from './components/modals/LoginModal';
+import RentModal from './components/modals/RentModal';
 import ToasterPrvider from './providers/ToasterPrvider';
 import getCurrentUser from './actions/getCurrentUser';
 
 export const metadata = {
-  title: 'Airbnb Home',
-  description: 'Airbnb Clone',
+  title: 'Vacation Explorer | Home',
+  description:
+    'Explore and book your dream vacations with Vacation Explorer. Discover a wide range of properties in stunning locations and enjoy a memorable getaway.',
 };
 
 const font = Nunito({
@@ -24,15 +27,16 @@ export default async function RootLayout({
 }) {
   const currentUser = await getCurrentUser();
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={font.className}>
         <ClientOnly>
           <ToasterPrvider />
+          <RentModal />
           <LoginModal />
           <RegisterModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
-        {children}
+        <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
   );

@@ -23,6 +23,12 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    ".next/types/**/*.ts",
+    "app/components/modals/RentModal.tsx",
+    "app/hooks/useRentModal.ts"
+  ],
   "exclude": ["node_modules", "**/*.tsx"]
 }
