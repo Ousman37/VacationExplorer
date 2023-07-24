@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 
-import useRentModal from '../../hooks/useRentModal';
+import useRentModal from '@/app/hooks/useRentModal';
 
 import Modal from './Modal';
 import Counter from '../inputs/Counter';
@@ -104,9 +104,7 @@ const RentModal = () => {
         rentModal.onClose();
       })
       .catch(() => {
-        toast.error(
-          'Oops! Something went wrong, and we couldn′t create your listing.'
-        );
+        toast.error('Unexpected error occurred.');
       })
       .finally(() => {
         setIsLoading(false);
@@ -132,8 +130,8 @@ const RentModal = () => {
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <Heading
-        title="Which of these best describes your place?"
-        subtitle="Pick a category"
+        title="Select Your Listing Category"
+        subtitle="Which category best describes your place?"
       />
       <div
         className="
@@ -159,16 +157,63 @@ const RentModal = () => {
     </div>
   );
 
+  if (step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Specify Your Location"
+          subtitle="Where is your place located?"
+        />
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue('location', value)}
+        />
+        <Map center={location?.latlng} />
+      </div>
+    );
+  }
+
+  if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Provide Basic Information"
+          subtitle="What amenities do you offer?"
+        />
+        <Counter
+          onChange={(value) => setCustomValue('guestCount', value)}
+          value={guestCount}
+          title="Guests"
+          subtitle="How many guests do you allow?"
+        />
+        <hr />
+        <Counter
+          onChange={(value) => setCustomValue('roomCount', value)}
+          value={roomCount}
+          title="Rooms"
+          subtitle="How many rooms do you have?"
+        />
+        <hr />
+        <Counter
+          onChange={(value) => setCustomValue('bathroomCount', value)}
+          value={bathroomCount}
+          title="Bathrooms"
+          subtitle="How many bathrooms do you have?"
+        />
+      </div>
+    );
+  }
+
   if (step === STEPS.IMAGES) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Add photos of your property"
-          subtitle="Photos help guests understand what to expect"
+          title="Add a photo of your place"
+          subtitle="Show guests what your place looks like!"
         />
         <ImageUpload
-          value={imageSrc}
           onChange={(value) => setCustomValue('imageSrc', value)}
+          value={imageSrc}
         />
       </div>
     );
@@ -178,26 +223,25 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Describe your property in detail"
-          subtitle="Help guests envision their stay"
+          title="Describe Your Place"
+          subtitle="Provide a brief description of your place"
         />
         <Input
           id="title"
-          type="text"
           label="Title"
-          placeholder="What's the name of your property?"
+          disabled={isLoading}
           register={register}
-          required
           errors={errors}
+          required
         />
+        <hr />
         <Input
           id="description"
-          type="textarea"
           label="Description"
-          placeholder="Describe your property."
+          disabled={isLoading}
           register={register}
-          required
           errors={errors}
+          required
         />
       </div>
     );
@@ -207,7 +251,7 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Now, set your price"
+          title="Determine Your Listing Price"
           subtitle="How much do you charge per night?"
         />
         <Input
@@ -228,7 +272,7 @@ const RentModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={rentModal.isOpen}
-      title="Vacation Explorer your home!"
+      title="Airbnb your home!"
       actionLabel={actionLabel}
       onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}

@@ -23,11 +23,11 @@ export async function POST(request: Request) {
     price,
   } = body;
 
-  Object.keys(body).forEach((value: any) => {
+  for (let value in body) {
     if (!body[value]) {
-      NextResponse.error();
+      return NextResponse.error(); // Return the error response to terminate the function
     }
-  });
+  }
 
   const listing = await prisma.listing.create({
     data: {

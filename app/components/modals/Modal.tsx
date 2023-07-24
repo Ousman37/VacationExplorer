@@ -1,5 +1,4 @@
-'use client';
-
+'use client'; // This is a client component 👈🏽
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 

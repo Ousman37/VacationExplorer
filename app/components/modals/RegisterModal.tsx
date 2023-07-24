@@ -2,8 +2,8 @@
 import axios from 'axios';
 import { AiFillGithub } from 'react-icons/ai';
 
-import useRegisterModal from '@/app/hooks/useRegisterModal';
-import useLoginModal from '@/app/hooks/useLoginModal';
+import useRegisterModal from '../../hooks/useRegisterModal';
+import useLoginModal from '../../hooks/useLoginModal';
 
 import { FcGoogle } from 'react-icons/fc';
 import { useState, useCallback } from 'react';
@@ -14,6 +14,7 @@ import Input from '../inputs/Input';
 import { toast } from 'react-hot-toast';
 import Button from '../Button';
 import { signIn } from 'next-auth/react';
+import React from 'react';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -40,6 +41,7 @@ const RegisterModal = () => {
       .then(() => {
         toast.success('Registered!');
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((error) => {
         toast.error('Something went wrong.');
