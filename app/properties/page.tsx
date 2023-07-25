@@ -5,7 +5,6 @@ import ClientOnly from '../components/ClientOnly';
 
 import getCurrentUser from '../actions/getCurrentUser';
 
-import TripsClient from './PropertiesClient';
 import getListings from '../actions/getListings';
 import PropertiesClient from './PropertiesClient';
 
