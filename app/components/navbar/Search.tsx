@@ -1,12 +1,13 @@
 'use client';
-
+'use client';
 import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { differenceInDays } from 'date-fns';
 
-import useSearchModal from '@/app/hooks/useSearchModal';
-import useCountries from '@/app/hooks/useCountries';
+import useSearchModal from '../../hooks/useSearchModal';
+import useCountries from '../../hooks/useCountries';
+import React from 'react';
 
 const Search = () => {
   const searchModal = useSearchModal();
@@ -53,18 +54,18 @@ const Search = () => {
   return (
     <div
       onClick={searchModal.onOpen}
-      className="border-[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md cursor-pointer bg-teal-400"
+      className="border-[1px] w-full md:w-auto py-1 md:py-2 rounded-full shadow-md hover:shadow-lg cursor-pointer bg-teal-700 flex flex-col sm:flex-row items-center justify-between"
     >
-      <div className="flex flex-row items-center justify-between">
-        <div className="text-sm font-bold px-6 text-white">{locationLabel}</div>
-        <div className="hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center text-white">
-          {durationLabel}
-        </div>
-        <div className="text-sm pl-6 pr-2 text-white flex flex-row items-center gap-3">
-          <div className="hidden sm:block">{guestLabel}</div>
-          <div className="p-2 bg-soft-coral-500 rounded-full">
-            <BiSearch size={18} />
-          </div>
+      <div className="text-xs sm:text-sm md:text-base font-bold px-2 sm:px-4 md:px-6 text-white">
+        {locationLabel}
+      </div>
+      <div className="text-xs sm:text-sm md:text-base font-semibold px-2 sm:px-4 md:px-6 my-1 sm:my-0 border-x-[1px] flex-1 text-center text-white">
+        {durationLabel}
+      </div>
+      <div className="text-xs sm:text-sm md:text-base pl-2 sm:pl-4 md:pl-6 pr-2 text-white flex flex-row items-center gap-1 sm:gap-2 md:gap-3">
+        <div>{guestLabel}</div>
+        <div className="p-1 sm:p-2 md:p-3 bg-soft-coral-500 rounded-full">
+          <BiSearch className="w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6" />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 
-import useRentModal from '@/app/hooks/useRentModal';
+import useRentModal from '../../hooks/useRentModal';
 
 import Modal from './Modal';
 import Counter from '../inputs/Counter';
@@ -214,6 +214,7 @@ const RentModal = () => {
         <ImageUpload
           onChange={(value) => setCustomValue('imageSrc', value)}
           value={imageSrc}
+          altText="Image of the rental place" // add altText prop here
         />
       </div>
     );

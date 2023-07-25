@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
+
 import React from 'react';
 
 function Footer() {
   return (
-    <footer className="bg-blue-600 text-sandy-brown py-10 px-5">
+    <footer className="bg-green-500 text-dark-brown py-10 px-5">
       <div className="flex justify-between items-center flex-wrap">
         <div className="w-full md:w-auto mb-8 md:mb-0">
           <h3 className="text-lg mb-4">Vacation Explorer</h3>
