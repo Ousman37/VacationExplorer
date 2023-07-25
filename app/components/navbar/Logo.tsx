@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <Link href="/" passHref>
       <div
-        className="cursor-pointer font-bold tracking-wider text-xs sm:text-sm md:text-xl lg:text-3xl px-2 sm:px-3 md:px-5 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4 md:rounded-full md:shadow-md md:border-3 border-transparent"
+        className="cursor-pointer font-bold tracking-wider text-xs sm:text-sm md:text-xl lg:text-3xl px-2 sm:px-3 md:px-5 lg:px-8 py-1 sm:py-3 md:py-3 lg:py-4 md:rounded-full md:shadow-md md:border-3 border-transparent"
         style={{
           fontFamily: 'Pacifico, cursive',
           textDecoration: 'none',
