@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Container from './Container';
+import Container from '../Container';
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import {
   GiBoatFishing,
@@ -13,7 +13,7 @@ import {
   GiWindmill,
 } from 'react-icons/gi';
 import { MdOutlineVilla } from 'react-icons/md';
-import CategoryBox from '.././components/CategoryBox';
+import CategoryBox from '../CategoryBox';
 
 import { IconType } from 'react-icons';
 import { usePathname, useSearchParams } from 'next/navigation';
