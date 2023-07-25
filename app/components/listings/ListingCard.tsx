@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'; // Correct import here
 import { useCallback, useMemo } from 'react';
 import { format } from 'date-fns';
 
-import useCountries from '@/app/hooks/useCountries';
+import useCountries from '../../hooks/useCountries';
 import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
 
 import HeartButton from '../HeartButton';

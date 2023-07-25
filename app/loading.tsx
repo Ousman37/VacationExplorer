@@ -1,5 +1,6 @@
 import React from 'react';
-import Loader from './components/loader';
+
+import Loader from './components/Loader';
 
 const LoadingSpinner = () => {
   return <Loader />;
