@@ -1,4 +1,4 @@
-'use client';
+'use client'; // Add the 'use client' directive at the top of the file
 
 import React, { useState, useEffect } from 'react';
 
