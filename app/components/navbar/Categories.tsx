@@ -13,13 +13,15 @@ import {
   GiWindmill,
 } from 'react-icons/gi';
 import { MdOutlineVilla } from 'react-icons/md';
-import CategoryBox from '../CategoryBox';
+import CategoryBox from '../CategoryBox'; // corrected import
 
 import { IconType } from 'react-icons';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { FaSkiing } from 'react-icons/fa';
 import { WiSnowflakeCold } from 'react-icons/wi';
 import { RiVipDiamondFill } from 'react-icons/ri';
+
+// The rest of your code...
 
 interface Category {
   label: string;
