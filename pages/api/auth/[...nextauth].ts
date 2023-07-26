@@ -12,12 +12,12 @@ export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma), // Use the PrismaAdapter with the new PrismaClient instance
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+      clientId: process.env.GITHUB_ID || '', // Provide a default empty string if the environment variable is undefined
+      clientSecret: process.env.GITHUB_SECRET || '', // Provide a default empty string if the environment variable is undefined
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID || '', // Provide a default empty string if the environment variable is undefined
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '', // Provide a default empty string if the environment variable is undefined
     }),
     CredentialsProvider({
       name: 'credentials',
@@ -60,7 +60,7 @@ export const authOptions: AuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || '', // Provide a default empty string if the environment variable is undefined
 };
 
 export default NextAuth(authOptions);
