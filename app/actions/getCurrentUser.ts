@@ -1,9 +1,10 @@
 import { getServerSession } from 'next-auth/next';
+
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import prisma from '@/app/libs/prismadb';
 
 export async function getSession() {
-  return getServerSession(authOptions);
+  return await getServerSession(authOptions);
 }
 
 export default async function getCurrentUser() {
@@ -30,9 +31,7 @@ export default async function getCurrentUser() {
       updatedAt: currentUser.updatedAt.toISOString(),
       emailVerified: currentUser.emailVerified?.toISOString() || null,
     };
-  } catch (error) {
-    // Handle specific errors if needed
-    console.error('Error while fetching current user:', error);
+  } catch (error: any) {
     return null;
   }
 }

@@ -24,7 +24,8 @@ export default async function getListings(params: IListingsParams) {
       category,
     } = params;
 
-    let query: any = {};
+    // Use an object to store the query conditions
+    const query: any = {};
 
     if (userId) {
       query.userId = userId;
@@ -34,22 +35,17 @@ export default async function getListings(params: IListingsParams) {
       query.category = category;
     }
 
-    if (roomCount) {
-      query.roomCount = {
-        gte: +roomCount,
-      };
+    // Use the "gte" operator only when the count values are positive
+    if (roomCount && roomCount > 0) {
+      query.roomCount = { gte: roomCount };
     }
 
-    if (guestCount) {
-      query.guestCount = {
-        gte: +guestCount,
-      };
+    if (guestCount && guestCount > 0) {
+      query.guestCount = { gte: guestCount };
     }
 
-    if (bathroomCount) {
-      query.bathroomCount = {
-        gte: +bathroomCount,
-      };
+    if (bathroomCount && bathroomCount > 0) {
+      query.bathroomCount = { gte: bathroomCount };
     }
 
     if (locationValue) {
@@ -57,20 +53,19 @@ export default async function getListings(params: IListingsParams) {
     }
 
     if (startDate && endDate) {
-      query.NOT = {
-        reservations: {
-          some: {
-            OR: [
-              {
-                endDate: { gte: startDate },
-                startDate: { lte: startDate },
-              },
-              {
-                startDate: { lte: endDate },
-                endDate: { gte: endDate },
-              },
-            ],
-          },
+      // Use the "some" operator to check if any reservation overlaps with the given dates
+      query.reservations = {
+        some: {
+          OR: [
+            {
+              endDate: { gte: startDate },
+              startDate: { lte: startDate },
+            },
+            {
+              startDate: { lte: endDate },
+              endDate: { gte: endDate },
+            },
+          ],
         },
       };
     }
@@ -88,7 +83,8 @@ export default async function getListings(params: IListingsParams) {
     }));
 
     return safeListings;
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error) {
+    console.error('Error while fetching listings:', error);
+    return []; // Return an empty array or handle the error case accordingly
   }
 }

@@ -28,7 +28,8 @@
     "**/*.ts",
     ".next/types/**/*.ts",
     "app/components/modals/RentModal.tsx",
-    "app/hooks/useRentModal.ts"
+    "app/hooks/useRentModal.ts",
+    "app/providers/ToasterProvider.tsx" // Add the path to ToasterProvider here
   ],
   "exclude": ["node_modules", "**/*.tsx"]
 }

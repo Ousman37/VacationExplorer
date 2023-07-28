@@ -1,14 +1,13 @@
-import React from 'react';
+import EmptyState from './../components/EmptyState';
+import ClientOnly from './../components/ClientOnly';
 
-import EmptyState from '../components/EmptyState';
-import ClientOnly from '../components/ClientOnly';
+import getCurrentUser from './../actions/getCurrentUser';
+import getFavoriteListings from './../actions/getFavoriteListings';
 
 import FavoritesClient from './FavoritesClient';
+import React from 'react';
 
-import getCurrentUser from '../actions/getCurrentUser';
-import getFavoriteListings from '../actions/getFavoriteListings';
-
-const favoritesPage = async () => {
+const ListingPage = async () => {
   const listings = await getFavoriteListings();
   const currentUser = await getCurrentUser();
 
@@ -16,8 +15,8 @@ const favoritesPage = async () => {
     return (
       <ClientOnly>
         <EmptyState
-          title="Oops, we're having trouble loading your favorites"
-          subtitle="Make sure you're online and please try again. If the problem persists, contact our support team."
+          title="No favorites found"
+          subtitle="Looks like you have no favorite listings."
         />
       </ClientOnly>
     );
@@ -25,9 +24,9 @@ const favoritesPage = async () => {
 
   return (
     <ClientOnly>
-      {/* Replace favoritesClient with your actual component name */}
       <FavoritesClient listings={listings} currentUser={currentUser} />
     </ClientOnly>
   );
 };
-export default favoritesPage;
+
+export default ListingPage;

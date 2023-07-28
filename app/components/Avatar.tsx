@@ -1,6 +1,7 @@
 'use client';
 import { FaUser } from 'react-icons/fa';
 import Image from 'next/image';
+import React from 'react';
 
 interface AvatarProps {
   src?: string | null | undefined;

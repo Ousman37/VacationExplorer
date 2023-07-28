@@ -14,6 +14,7 @@ import Input from '../inputs/Input';
 import { toast } from 'react-hot-toast';
 import Button from '../Button';
 import { useRouter } from 'next/navigation';
+import React from 'react';
 
 const LoginModal = () => {
   const router = useRouter();
