@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import NextAuth, { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
@@ -29,6 +28,8 @@ export const authOptions: AuthOptions = {
           throw new Error('Invalid credentials');
         }
 
+        const bcrypt = require('bcrypt');
+        // Move the password comparison code here
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email,
