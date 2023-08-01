@@ -1,5 +1,6 @@
 'use client';
-import React from 'react';
+
+import React, { useState } from 'react';
 import Container from './Container';
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import {
@@ -14,12 +15,12 @@ import {
 } from 'react-icons/gi';
 import { MdOutlineVilla } from 'react-icons/md';
 import CategoryBox from './navbar/CategoryBox'; // corrected import
-
 import { IconType } from 'react-icons';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { FaSkiing } from 'react-icons/fa';
 import { WiSnowflakeCold } from 'react-icons/wi';
 import { RiVipDiamondFill } from 'react-icons/ri';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Add the arrow icons
 
 // The rest of your code...
 
@@ -121,30 +122,59 @@ export const categories: Category[] = [
       'This property offers a luxurious experience with elegant amenities and impeccable services, ensuring a memorable and indulgent stay.',
   },
 ];
-
 const Categories = () => {
   const params = useSearchParams();
   const category = params?.get('category');
 
   const pathname = usePathname();
-
   const isMainPage = pathname === '/';
+
+  const [startIndex, setStartIndex] = useState(0);
+
+  const itemsPerPage = 4;
+
+  const handlePrevious = () => {
+    setStartIndex((prevStartIndex) =>
+      Math.max(0, prevStartIndex - itemsPerPage)
+    );
+  };
+
+  const handleNext = () => {
+    setStartIndex((prevStartIndex) =>
+      Math.min(prevStartIndex + itemsPerPage, categories.length - itemsPerPage)
+    );
+  };
 
   if (!isMainPage) {
     return null;
   }
 
+  const visibleCategories = categories.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
   return (
     <Container>
-      <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
-        {categories.map((item) => (
+      <div className="pt-0 flex flex-row items-center justify-between overflow-x-auto">
+        {startIndex > 0 && (
+          <div className="mr-4 cursor-pointer" onClick={handlePrevious}>
+            <FiChevronLeft size={24} />
+          </div>
+        )}
+        {visibleCategories.map((item) => (
           <CategoryBox
             key={item.label}
             label={item.label}
             selected={category === item.label}
-            icon={item.icon} // Add the 'icon' prop
+            icon={item.icon}
           />
         ))}
+        {startIndex + itemsPerPage < categories.length && (
+          <div className="ml-4 cursor-pointer" onClick={handleNext}>
+            <FiChevronRight size={24} />
+          </div>
+        )}
       </div>
     </Container>
   );
