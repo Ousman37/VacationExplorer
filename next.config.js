@@ -31,4 +31,19 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = {
+  ...nextConfig,
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'self';", // Remove 'unsafe-inline' and allow only 'self'
+          },
+        ],
+      },
+    ];
+  },
+};
