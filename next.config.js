@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
+const crypto = require('crypto');
+
+function generateRandomNonce() {
+  const randomBytes = crypto.randomBytes(16);
+  return randomBytes.toString('base64');
+}
+
 const nextConfig = {
   experimental: {
     appDir: true,
@@ -30,20 +37,4 @@ const nextConfig = {
     return config;
   },
 };
-
-module.exports = {
-  ...nextConfig,
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Content-Security-Policy',
-            value: "script-src 'self';", // Remove 'unsafe-inline' and allow only 'self'
-          },
-        ],
-      },
-    ];
-  },
-};
+module.exports = nextConfig;
